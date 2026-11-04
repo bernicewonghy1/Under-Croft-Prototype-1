@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using System;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class PlayerHealth : MonoBehaviour
 
     public float CurrentHealth { get; private set; }
 
+    public event Action OnPlayerDeath;
+
     private void Awake()
     {
         CurrentHealth = maxHealth;
@@ -15,12 +18,11 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (CurrentHealth <= 0f) return;
+        if (CurrentHealth <= 0f)
+            return;
 
         CurrentHealth -= Mathf.Max(0f, damage);
-        CurrentHealth = Mathf.Clamp(
-            CurrentHealth, 0f, maxHealth
-        );
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, maxHealth);
 
         Debug.Log("Player HP: " + CurrentHealth);
 
@@ -33,7 +35,8 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died!");
-        // We'll add the death animation later.
+
+        OnPlayerDeath?.Invoke();
     }
 
     public float GetHealthPercentage()
