@@ -1,0 +1,446 @@
+fileFormatVersion: 2
+guid: efb571e1c739fa848a89e4f510ea1bd2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7469025222096971388
+    second: Unity_Game_Assets_Tileset-Photoroom_0
+  - first:
+      213: -7807433067956775670
+    second: Unity_Game_Assets_Tileset-Photoroom_1
+  - first:
+      213: -5715402645660509572
+    second: Unity_Game_Assets_Tileset-Photoroom_2
+  - first:
+      213: 8204855441229096514
+    second: Unity_Game_Assets_Tileset-Photoroom_3
+  - first:
+      213: -2801561925444749405
+    second: Unity_Game_Assets_Tileset-Photoroom_4
+  - first:
+      213: -7244941918171181627
+    second: Unity_Game_Assets_Tileset-Photoroom_5
+  - first:
+      213: 122579846112823890
+    second: Unity_Game_Assets_Tileset-Photoroom_6
+  - first:
+      213: -6025619846235976337
+    second: Unity_Game_Assets_Tileset-Photoroom_7
+  - first:
+      213: 6051191278808722659
+    second: Unity_Game_Assets_Tileset-Photoroom_8
+  - first:
+      213: -8160925212568273413
+    second: Unity_Game_Assets_Tileset-Photoroom_9
+  - first:
+      213: 4189098784002323270
+    second: Unity_Game_Assets_Tileset-Photoroom_10
+  - first:
+      213: -8476452415568149096
+    second: Unity_Game_Assets_Tileset-Photoroom_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 235
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4891a721221b85890800000000000000
+      internalID: -7469025222096971388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_1
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 235
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a055cc08dfc66a390800000000000000
+      internalID: -7807433067956775670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_2
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 235
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7ad315439fcea0b0800000000000000
+      internalID: -5715402645660509572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 172
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24624e77d808dd170800000000000000
+      internalID: 8204855441229096514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_4
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 172
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a73b99a54ade19d0800000000000000
+      internalID: -2801561925444749405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_5
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 172
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cdc115f5bbc47b90800000000000000
+      internalID: -7244941918171181627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_6
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 107
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25a4d2878bd73b100800000000000000
+      internalID: 122579846112823890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_7
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 107
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6d8f89cca2b06ca0800000000000000
+      internalID: -6025619846235976337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_8
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 107
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ece55158662af350800000000000000
+      internalID: 6051191278808722659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_9
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 43
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfdb652f1c19ebe80800000000000000
+      internalID: -8160925212568273413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_10
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 43
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 643ba75362ba22a30800000000000000
+      internalID: 4189098784002323270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unity_Game_Assets_Tileset-Photoroom_11
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 43
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8950f8e20779d5a80800000000000000
+      internalID: -8476452415568149096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 00789aba817b6654997dac70041da5f4
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Unity_Game_Assets_Tileset-Photoroom_0: -7469025222096971388
+      Unity_Game_Assets_Tileset-Photoroom_1: -7807433067956775670
+      Unity_Game_Assets_Tileset-Photoroom_10: 4189098784002323270
+      Unity_Game_Assets_Tileset-Photoroom_11: -8476452415568149096
+      Unity_Game_Assets_Tileset-Photoroom_2: -5715402645660509572
+      Unity_Game_Assets_Tileset-Photoroom_3: 8204855441229096514
+      Unity_Game_Assets_Tileset-Photoroom_4: -2801561925444749405
+      Unity_Game_Assets_Tileset-Photoroom_5: -7244941918171181627
+      Unity_Game_Assets_Tileset-Photoroom_6: 122579846112823890
+      Unity_Game_Assets_Tileset-Photoroom_7: -6025619846235976337
+      Unity_Game_Assets_Tileset-Photoroom_8: 6051191278808722659
+      Unity_Game_Assets_Tileset-Photoroom_9: -8160925212568273413
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
