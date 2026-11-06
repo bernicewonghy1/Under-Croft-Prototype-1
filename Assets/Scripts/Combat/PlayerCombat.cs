@@ -1,24 +1,20 @@
 
-using System.Collections;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private InventoryManager inventoryManager;
-    [SerializeField] private GameObject swordSlash;
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private SpriteRenderer playerSprite;
 
     [Header("Attack Settings")]
-    [SerializeField] private float attackRange = 1f;
+    [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float attackRadius = 0.7f;
     [SerializeField] private LayerMask enemyLayer;
 
-    [Header("Visual Settings")]
-    [SerializeField] private float slashDuration = 0.15f;
-
     private float nextAttackTime = 0f;
-    private Vector2 facingDirection = Vector2.down;
-    private Coroutine slashCoroutine;
+    private Vector2 facingDirection = Vector2.right;
 
     private void Update()
     {
@@ -26,6 +22,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            PlayAttackAnimation();
             Attack();
         }
     }
@@ -40,6 +37,29 @@ public class PlayerCombat : MonoBehaviour
         if (movement.sqrMagnitude > 0.01f)
         {
             facingDirection = movement.normalized;
+        }
+    }
+
+    private void PlayAttackAnimation()
+    {
+        if (playerAnimator == null)
+            return;
+
+        playerAnimator.ResetTrigger("LeftAttack");
+        playerAnimator.ResetTrigger("RightAttack");
+
+        if (playerSprite != null)
+        {
+            playerSprite.flipX = false;
+        }
+
+        if (facingDirection.x < 0f)
+        {
+            playerAnimator.SetTrigger("RightAttack");
+        }
+        else
+        {
+            playerAnimator.SetTrigger("LeftAttack");
         }
     }
 
@@ -82,45 +102,6 @@ public class PlayerCombat : MonoBehaviour
                 enemyHealth.TakeDamage(weapon.damage);
             }
         }
-
-        ShowSwordSlash();
-    }
-
-    private void ShowSwordSlash()
-    {
-        if (swordSlash == null)
-            return;
-
-        // Position the slash in the direction the player faces.
-        swordSlash.transform.localPosition =
-            new Vector3(facingDirection.x, facingDirection.y, 0f)
-            * attackRange;
-
-        // Rotate the slash so it faces the correct direction.
-        float angle = Mathf.Atan2(
-            facingDirection.y,
-            facingDirection.x
-        ) * Mathf.Rad2Deg;
-
-        swordSlash.transform.localRotation =
-            Quaternion.Euler(0f, 0f, angle + 90f);
-
-        if (slashCoroutine != null)
-        {
-            StopCoroutine(slashCoroutine);
-        }
-
-        slashCoroutine = StartCoroutine(DisplaySlash());
-    }
-
-    private IEnumerator DisplaySlash()
-    {
-        swordSlash.SetActive(true);
-
-        yield return new WaitForSeconds(slashDuration);
-
-        swordSlash.SetActive(false);
-        slashCoroutine = null;
     }
 
     private void OnDrawGizmosSelected()

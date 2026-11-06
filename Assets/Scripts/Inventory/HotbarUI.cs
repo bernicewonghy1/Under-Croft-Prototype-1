@@ -1,11 +1,15 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class HotbarUI : MonoBehaviour
+public class HotbarUI : MonoBehaviour, IPointerClickHandler
 {
     [Header("Inventory")]
     [SerializeField] private InventoryManager inventoryManager;
+
+    [Header("Player")]
+    [SerializeField] private PlayerHealth playerHealth;
 
     [Header("Hotbar Slots")]
     [SerializeField] private Image[] slotImages = new Image[5];
@@ -16,6 +20,10 @@ public class HotbarUI : MonoBehaviour
     [Header("Slot Colours")]
     [SerializeField] private Color normalColour = Color.gray;
     [SerializeField] private Color selectedColour = Color.yellow;
+
+    [Header("Potion Settings")]
+    [SerializeField] private ItemData healthPotion;
+    [SerializeField] private float healAmount = 30f;
 
     private int selectedSlot = 0;
 
@@ -32,6 +40,49 @@ public class HotbarUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4)) SelectSlot(3);
         if (Input.GetKeyDown(KeyCode.Alpha5)) SelectSlot(4);
 
+        UpdateHotbar();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+
+        if (eventData.clickCount < 2)
+            return;
+
+        for (int i = 0; i < itemIcons.Length; i++)
+        {
+            if (itemIcons[i] == null)
+                continue;
+
+            if (RectTransformUtility.RectangleContainsScreenPoint(
+                itemIcons[i].rectTransform,
+                eventData.position,
+                eventData.pressEventCamera))
+            {
+                UsePotion(i);
+                break;
+            }
+        }
+    }
+
+    private void UsePotion(int index)
+    {
+        if (inventoryManager == null ||
+            playerHealth == null ||
+            healthPotion == null)
+            return;
+
+        InventoryItem item = inventoryManager.GetHotbarItem(index);
+
+        if (item == null || item.itemData != healthPotion)
+            return;
+
+        playerHealth.Heal(healAmount);
+        inventoryManager.RemoveHotbarItem(index);
+
+        Debug.Log("Health potion consumed!");
         UpdateHotbar();
     }
 

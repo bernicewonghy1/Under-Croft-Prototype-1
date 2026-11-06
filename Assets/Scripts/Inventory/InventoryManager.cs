@@ -8,6 +8,8 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Starting Items")]
     [SerializeField] private ItemData startingSword;
+    [SerializeField] private ItemData startingPotion;
+
     private InventoryItem[] hotbarItems = new InventoryItem[5];
     private InventoryItem[] bagItems;
 
@@ -19,6 +21,7 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         AddItem(startingSword);
+        AddItem(startingPotion);
     }
 
     public bool AddItem(ItemData itemData)
@@ -28,7 +31,7 @@ public class InventoryManager : MonoBehaviour
 
         InventoryItem newItem = new InventoryItem(itemData);
 
-        // Fill empty hotbar slots first.
+        // fill empty hotbar slots first
         for (int i = 0; i < hotbarItems.Length; i++)
         {
             if (hotbarItems[i] == null)
@@ -39,7 +42,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // If hotbar is full, put item in bag.
+        // put item in bag if hotbar is full
         for (int i = 0; i < bagItems.Length; i++)
         {
             if (bagItems[i] == null)
@@ -68,6 +71,14 @@ public class InventoryManager : MonoBehaviour
             return null;
 
         return bagItems[index];
+    }
+
+    public void RemoveHotbarItem(int index)
+    {
+        if (index < 0 || index >= hotbarItems.Length)
+            return;
+
+        hotbarItems[index] = null;
     }
 
     public void SwapItems(bool firstIsHotbar, int firstIndex,

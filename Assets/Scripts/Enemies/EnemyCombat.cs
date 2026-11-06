@@ -11,6 +11,9 @@ public class EnemyCombat : MonoBehaviour
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float attackCooldown = 2f;
 
+    [Header("Animation")]
+    [SerializeField] private Animator enemyAnimator;
+
     private PlayerHealth playerHealth;
     private float nextAttackTime;
 
@@ -42,6 +45,13 @@ public class EnemyCombat : MonoBehaviour
     {
         nextAttackTime = Time.time + attackCooldown;
 
+        // play the attack animation
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.SetTrigger("Attack");
+        }
+
+        // damage the player
         playerHealth.TakeDamage(attackDamage);
 
         Debug.Log(gameObject.name + " attacked the player for "

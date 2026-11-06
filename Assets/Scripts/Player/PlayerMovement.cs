@@ -31,20 +31,46 @@ public class PlayerMovement : MonoBehaviour
 
         movement = new Vector2(horizontal, vertical).normalized;
 
-        // switch between idle and walking
+        // update walking and idle animations
         if (playerAnimator != null)
         {
-            playerAnimator.SetBool("IsMoving", movement.sqrMagnitude > 0f);
+            playerAnimator.SetBool(
+                "IsMoving",
+                movement.sqrMagnitude > 0f
+            );
         }
 
-        // flip the sprite left or right
-        if (spriteRenderer != null)
+        // check whether an attack animation is playing
+        bool isAttacking = false;
+
+        if (playerAnimator != null)
         {
-            if (horizontal < 0)
+            AnimatorStateInfo state =
+                playerAnimator.GetCurrentAnimatorStateInfo(0);
+
+            isAttacking =
+                state.IsName("LeftPlayerAttack") ||
+                state.IsName("RightPlayerAttack");
+
+            if (playerAnimator.IsInTransition(0))
+            {
+                AnimatorStateInfo nextState =
+                    playerAnimator.GetNextAnimatorStateInfo(0);
+
+                isAttacking = isAttacking ||
+                    nextState.IsName("LeftPlayerAttack") ||
+                    nextState.IsName("RightPlayerAttack");
+            }
+        }
+
+        // only flip the sprite when not attacking
+        if (spriteRenderer != null && !isAttacking)
+        {
+            if (horizontal < 0f)
             {
                 spriteRenderer.flipX = true;
             }
-            else if (horizontal > 0)
+            else if (horizontal > 0f)
             {
                 spriteRenderer.flipX = false;
             }
