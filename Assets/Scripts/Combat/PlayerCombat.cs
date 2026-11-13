@@ -13,12 +13,43 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float attackRadius = 0.7f;
     [SerializeField] private LayerMask enemyLayer;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip swordSwingSound;
+
     private float nextAttackTime = 0f;
     private Vector2 facingDirection = Vector2.right;
+
+    public bool IsBlocking { get; private set; }
+
+    private void Awake()
+    {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
         UpdateFacingDirection();
+
+        IsBlocking = Input.GetMouseButton(1);
+
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("IsBlocking", IsBlocking);
+            playerAnimator.SetBool(
+                "FacingLeft",
+                facingDirection.x < -0.01f
+            );
+        }
+
+        if (IsBlocking)
+        {
+            if (playerSprite != null)
+                playerSprite.flipX = false;
+
+            return;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -35,9 +66,7 @@ public class PlayerCombat : MonoBehaviour
         Vector2 movement = new Vector2(horizontal, vertical);
 
         if (movement.sqrMagnitude > 0.01f)
-        {
             facingDirection = movement.normalized;
-        }
     }
 
     private void PlayAttackAnimation()
@@ -49,18 +78,12 @@ public class PlayerCombat : MonoBehaviour
         playerAnimator.ResetTrigger("RightAttack");
 
         if (playerSprite != null)
-        {
             playerSprite.flipX = false;
-        }
 
         if (facingDirection.x < 0f)
-        {
             playerAnimator.SetTrigger("RightAttack");
-        }
         else
-        {
             playerAnimator.SetTrigger("LeftAttack");
-        }
     }
 
     private void Attack()
@@ -68,7 +91,8 @@ public class PlayerCombat : MonoBehaviour
         if (inventoryManager == null)
             return;
 
-        InventoryItem equippedItem = inventoryManager.GetHotbarItem(0);
+        InventoryItem equippedItem =
+            inventoryManager.GetHotbarItem(0);
 
         if (equippedItem == null || equippedItem.itemData == null)
             return;
@@ -84,6 +108,10 @@ public class PlayerCombat : MonoBehaviour
         float attackSpeed = Mathf.Max(0.01f, weapon.attackSpeed);
         nextAttackTime = Time.time + (1f / attackSpeed);
 
+        // play sword sound
+        if (audioSource != null && swordSwingSound != null)
+            audioSource.PlayOneShot(swordSwingSound);
+
         Vector2 attackPosition =
             (Vector2)transform.position + facingDirection * attackRange;
 
@@ -95,12 +123,11 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in enemies)
         {
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth =
+                enemy.GetComponent<EnemyHealth>();
 
             if (enemyHealth != null)
-            {
                 enemyHealth.TakeDamage(weapon.damage);
-            }
         }
     }
 

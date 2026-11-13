@@ -13,14 +13,17 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     private SpriteRenderer spriteRenderer;
+    private PlayerCombat playerCombat;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerCombat = GetComponent<PlayerCombat>();
 
         if (playerAnimator != null)
         {
-            spriteRenderer = playerAnimator.GetComponent<SpriteRenderer>();
+            spriteRenderer =
+                playerAnimator.GetComponent<SpriteRenderer>();
         }
     }
 
@@ -31,16 +34,9 @@ public class PlayerMovement : MonoBehaviour
 
         movement = new Vector2(horizontal, vertical).normalized;
 
-        // update walking and idle animations
-        if (playerAnimator != null)
-        {
-            playerAnimator.SetBool(
-                "IsMoving",
-                movement.sqrMagnitude > 0f
-            );
-        }
+        bool isBlocking =
+            playerCombat != null && playerCombat.IsBlocking;
 
-        // check whether an attack animation is playing
         bool isAttacking = false;
 
         if (playerAnimator != null)
@@ -61,26 +57,31 @@ public class PlayerMovement : MonoBehaviour
                     nextState.IsName("LeftPlayerAttack") ||
                     nextState.IsName("RightPlayerAttack");
             }
+
+            // stop walking animation while blocking
+            playerAnimator.SetBool(
+                "IsMoving",
+                movement.sqrMagnitude > 0f && !isBlocking
+            );
         }
 
-        // only flip the sprite when not attacking
-        if (spriteRenderer != null && !isAttacking)
+        // don't flip sprite during attacks or blocking
+        if (spriteRenderer != null &&
+            !isAttacking &&
+            !isBlocking)
         {
             if (horizontal < 0f)
-            {
                 spriteRenderer.flipX = true;
-            }
             else if (horizontal > 0f)
-            {
                 spriteRenderer.flipX = false;
-            }
         }
     }
 
     private void FixedUpdate()
     {
         rb.MovePosition(
-            rb.position + movement * moveSpeed * Time.fixedDeltaTime
+            rb.position +
+            movement * moveSpeed * Time.fixedDeltaTime
         );
     }
 }

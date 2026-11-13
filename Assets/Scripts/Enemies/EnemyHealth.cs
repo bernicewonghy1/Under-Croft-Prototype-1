@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -10,11 +11,31 @@ public class EnemyHealth : MonoBehaviour
     [Header("Health Bar")]
     [SerializeField] private Slider healthBar;
 
+    [Header("Damage Flash")]
+    [SerializeField] private SpriteRenderer enemySprite;
+    [SerializeField] private Color damageColour = Color.red;
+    [SerializeField] private float flashDuration = 0.15f;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip enemyHurtSound;
+
     private float currentHealth;
+    private Color originalColour;
+    private Coroutine flashCoroutine;
 
     private void Awake()
     {
         currentHealth = maxHealth;
+
+        if (enemySprite == null)
+            enemySprite = GetComponentInChildren<SpriteRenderer>();
+
+        if (enemySprite != null)
+            originalColour = enemySprite.color;
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -27,10 +48,24 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0f)
             return;
 
-        currentHealth -= damage;
+        currentHealth -= Mathf.Max(0f, damage);
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
-        Debug.Log(gameObject.name + " took " + damage + " damage!");
+        // play hurt sound, including on the killing hit
+        if (enemyHurtSound != null)
+        {
+            if (currentHealth <= 0f)
+            {
+                AudioSource.PlayClipAtPoint(
+                    enemyHurtSound,
+                    transform.position
+                );
+            }
+            else if (audioSource != null)
+            {
+                audioSource.PlayOneShot(enemyHurtSound);
+            }
+        }
 
         UpdateHealthBar();
 
@@ -38,20 +73,37 @@ public class EnemyHealth : MonoBehaviour
         {
             Die();
         }
+        else
+        {
+            if (flashCoroutine != null)
+                StopCoroutine(flashCoroutine);
+
+            flashCoroutine = StartCoroutine(DamageFlash());
+        }
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        if (enemySprite == null)
+            yield break;
+
+        enemySprite.color = damageColour;
+
+        yield return new WaitForSeconds(flashDuration);
+
+        enemySprite.color = originalColour;
+        flashCoroutine = null;
     }
 
     private void UpdateHealthBar()
     {
         if (healthBar != null)
-        {
             healthBar.value = currentHealth / maxHealth;
-        }
     }
 
     private void Die()
     {
         Debug.Log(gameObject.name + " has died!");
-
         Destroy(gameObject);
     }
 }

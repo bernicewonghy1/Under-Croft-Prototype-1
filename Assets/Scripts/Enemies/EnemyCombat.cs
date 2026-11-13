@@ -14,15 +14,23 @@ public class EnemyCombat : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator enemyAnimator;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip enemyAttackSound;
+
     private PlayerHealth playerHealth;
     private float nextAttackTime;
+
+    private void Awake()
+    {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+    }
 
     private void Start()
     {
         if (player != null)
-        {
             playerHealth = player.GetComponent<PlayerHealth>();
-        }
     }
 
     private void Update()
@@ -36,22 +44,20 @@ public class EnemyCombat : MonoBehaviour
         );
 
         if (distance <= attackRange && Time.time >= nextAttackTime)
-        {
             Attack();
-        }
     }
 
     private void Attack()
     {
         nextAttackTime = Time.time + attackCooldown;
 
-        // play the attack animation
         if (enemyAnimator != null)
-        {
             enemyAnimator.SetTrigger("Attack");
-        }
 
-        // damage the player
+        // play skeleton attack sound
+        if (audioSource != null && enemyAttackSound != null)
+            audioSource.PlayOneShot(enemyAttackSound);
+
         playerHealth.TakeDamage(attackDamage);
 
         Debug.Log(gameObject.name + " attacked the player for "
